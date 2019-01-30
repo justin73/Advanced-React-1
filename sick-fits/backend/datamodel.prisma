@@ -1,0 +1,16 @@
+type User {
+  id: ID! @unique
+  name: String!
+  email: String!
+}
+
+type Item {
+  id: ID! @unique
+  title: String!
+  description: String!
+  image: String!
+  largeImage: String!
+  price: Int!
+  # user: User!
+}
+# everytime when you update the data model, you have to re-deploy the changes to prisma, so you can retrieve the latest schema back from the server

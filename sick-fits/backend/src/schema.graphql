@@ -1,0 +1,12 @@
+# public facing API, like the routes defined what functions the api serves
+# here prisma use an `import` to gather all the prisma defined data type so that we dont have to redefined them all over again here
+
+# import * from './generated/prisma.graphql'
+
+type Query {
+	items: [Item]!
+}
+
+type Mutation {
+	createItem(title: String, description: String, price: Int, image: String, largeImage: String): Item!
+}
