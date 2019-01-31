@@ -1,7 +1,7 @@
 import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
-// this file is used to fix the page refresh flickers(when first render, there was a sec that styled component was not applied)
+// this file is used to fix the page refresh flickers caused by the server side rendering nextjs (when first render, there was a sec that styled component was not applied)
 export default class MyDocument extends Document {
 	static async getInitialProps(ctx) {
 		const sheet = new ServerStyleSheet();
