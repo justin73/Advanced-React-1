@@ -7,11 +7,12 @@ const Query = {
 
 	// use forwardTo to directly use db(prisma.graphql) to handle your request and get the value back
 	// which means you dont need any data check or mutate, this is a fastforward way to quick get the data
-	items: forwardTo('db')
+	items: forwardTo('db'),
 	// async items(parent, args, ctx, info) {
 	// 	const items = await ctx.db.query.items();
 	// 	return items;
 	// }
+	item: forwardTo('db')
 };
 
 module.exports = Query;
