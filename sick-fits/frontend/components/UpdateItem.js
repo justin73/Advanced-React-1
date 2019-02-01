@@ -21,9 +21,9 @@ const UPDATE_ITEM_MUTATION = gql`
 	mutation UPDATE_ITEM_MUTATION($id: ID!, $title: String, $description: String, $price: Int) {
 		updateItem(id: $id, title: $title, description: $description, price: $price) {
 			id
-      title
-      description
-      price
+			title
+			description
+			price
 		}
 	}
 `;
@@ -38,25 +38,26 @@ class UpdateItem extends Component {
 		// use computed variable as properties { [var]: value }
 		this.setState({ [name]: val });
 	};
-	updaeItem = (e, updateItemMutation) => {
+	updateItem = async (e, updateItemMutation) => {
 		e.preventDefault();
-    console.log('this.state ---> ', this.state);
+		console.log('this.state ---> ', this.state);
 
-    const res = await updateItemMutation({
-      variables: {
-        id: this.props.id,
-        ...this.state
-      }
-    })
+		const res = await updateItemMutation({
+			variables: {
+				id: this.props.id,
+				...this.state
+			}
+		});
 	};
 
 	render() {
 		return (
+			// first get item
 			<Query query={SINGLE_ITEM_QUERY} variables={{ id: this.props.id }}>
 				{({ data, loading }) => {
 					if (loading) return <p>loading ...</p>;
 					if (!data.item) return <p>no item found for id {this.props.id}</p>;
-
+					// then update it
 					return (
 						<Mutation mutation={UPDATE_ITEM_MUTATION} variables={this.state}>
 							{(updateItem, { loading, error }) => (
@@ -110,7 +111,7 @@ class UpdateItem extends Component {
 												defaultValue={data.item.description}
 											/>
 										</label>
-										<button type="submit">Sav{loading? 'ing': 'e'}</button>
+										<button type="submit">Sav{loading ? 'ing' : 'e'}</button>
 									</fieldset>
 								</Form>
 							)}
