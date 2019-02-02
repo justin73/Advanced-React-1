@@ -4,8 +4,9 @@
 # import * from './generated/prisma.graphql'
 
 type Query {
-	items: [Item]!
+	items(where: ItemWhereInput, orderBy:ItemOrderByInput, skip: Int, frist: Int): [Item]!
 	item(where: ItemWhereUniqueInput!): Item
+	itemsConnection(where: ItemWhereUniqueInput): itemsConnection # for pagination
 }
 
 type Mutation {

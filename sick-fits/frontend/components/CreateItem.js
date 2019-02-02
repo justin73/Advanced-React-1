@@ -60,6 +60,8 @@ class CreateItem extends Component {
 
 	render() {
 		return (
+			//  we can pass in a refetchQueries which will allow us the refetch the list once we finish the mutation operation
+			// but the big drawback is that it will clean the cache entirely
 			<Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
 				{(createItem, { loading, error }) => (
 					<Form
